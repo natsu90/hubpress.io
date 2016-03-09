@@ -1,4 +1,4 @@
-= Install Sentry with Docker
+= Install Sentry with Docker - Part 1
 
 Recently I've to take on abit DevOps role since our former DevOps left and no one replace him yet. Heavily in backend programming, I only know a little about server stuff, usually only to check and install dependencies needed for the webapp. The hardest thing I did was installing New Relic.
 
