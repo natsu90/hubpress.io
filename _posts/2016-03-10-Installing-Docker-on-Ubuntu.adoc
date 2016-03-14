@@ -1,26 +1,117 @@
-= Installing Docker
+= Installing Docker on Ubuntu
 
 Recently I've to take on abit DevOps role since our former DevOps left and no one replace him yet. Heavily in backend programming, I only know a little about server stuff, usually only to check and install dependencies needed for the webapp. The hardest thing I did was installing New Relic.
 
 I think I don't need to know much about server stuff. I would use Heroku to deploy simple webapp. There's already LAMP stack in Digital Ocean. Sometimes ago I was using WebFaction. Right now I'm using Laravel Forge. For development environment there's Laravel Homestead.
 
-Our logging system, Sentry stopped working after we tried to scale down its resource in AWS. Long story short we decided to setup new Sentry with Docker. https://docs.getsentry.com/on-premise/server/installation/
-
-----
-$ asciidoc -b html5 recommended-practices.adoc
-----
+Our logging system, Sentry stopped working after we tried to scale down its resource in AWS. Long story short we decided to setup new Sentry with Docker.
 
 == Prerequisites
 
-1. Your OS server must be Ubuntu
+1. Your OS server is *Ubuntu*
 
-2. The version should be either 12.04, 14.04, or 15.10
-
-3. And 64-bit
-
-4. Kernel version is 3.10 and above
+2. The version must be either *12.04*, *14.04*, or *15.10*
 
 ----
-$ uname -a
-Linux teratocloud **3.11.0**-26-generic #45~**precise**1-**Ubuntu** SMP Tue Jul 15 04:02:35 UTC 2014 **x86_64** x86_64 x86_64 GNU/Linux
+$ lsb_release -a
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 12.04.4 LTS
+Release:	12.04
+Codename:	precise
 ----
+
+3. And *64-bit*
+
+----
+$ uname -m
+x86_64
+----
+
+4. Kernel version is *3.10* and above
+
+----
+$ uname -r
+3.11.0-26-generic
+----
+
+== Install Docker
+
+1. Log into your server `ssh` as a user with *sudo* privileges or *root*
+
+2. Verify that you have `curl` installed
+
+----
+$ curl --version
+----
+
+otherwise install,
+
+----
+$ sudo apt-get install curl 
+----
+
+3. Download and install `docker`
+
+----
+$ curl -fsSL https://get.docker.com/ | sh
+----
+
+4. Verify `docker` installation
+
+----
+$ docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+535020c3e8ad: Pull complete
+af340544ed62: Pull complete
+Digest: sha256:a68868bfe696c00866942e8f5ca39e3e31b79c1e50feaee4ce5e28df2f051d5c
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker.
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker Engine CLI client contacted the Docker Engine daemon.
+ 2. The Docker Engine daemon pulled the "hello-world" image from the Docker Hub.
+ 3. The Docker Engine daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker Engine daemon streamed that output to the Docker Engine CLI client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker Hub account:
+ https://hub.docker.com
+
+For more examples and ideas, visit:
+ https://docs.docker.com/userguide/
+----
+
+== Install Docker Compose
+
+1. Download `docker-compose` binary file
+
+----
+$ curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+----
+
+2. Apply executable permissions to the binary
+
+----
+$ chmod +x /usr/local/bin/docker-compose
+----
+
+3. Verify `docker-compose` installation
+
+----
+$ docker-compose --version
+docker-compose version 1.6.2, build 4d72027
+----
+
+== Enable UFW forwarding
+
+You can use `ufw allow {port}` for each port `docker` container or you can enable automatic port forwarding.
+
+1. 
