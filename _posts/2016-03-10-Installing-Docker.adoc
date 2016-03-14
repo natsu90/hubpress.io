@@ -1,4 +1,4 @@
-= Install Sentry with Docker - Part 1
+= Installing Docker
 
 Recently I've to take on abit DevOps role since our former DevOps left and no one replace him yet. Heavily in backend programming, I only know a little about server stuff, usually only to check and install dependencies needed for the webapp. The hardest thing I did was installing New Relic.
 
@@ -8,4 +8,19 @@ Our logging system, Sentry stopped working after we tried to scale down its reso
 
 ----
 $ asciidoc -b html5 recommended-practices.adoc
+----
+
+== Prerequisites
+
+1. Your OS server must be Ubuntu
+
+2. The version should be either 12.04, 14.04, or 15.10
+
+3. And 64-bit
+
+4. Kernel version is 3.10 and above
+
+----
+$ uname -a
+Linux teratocloud **3.11.0**-26-generic #45~**precise**1-**Ubuntu** SMP Tue Jul 15 04:02:35 UTC 2014 **x86_64** x86_64 x86_64 GNU/Linux
 ----
