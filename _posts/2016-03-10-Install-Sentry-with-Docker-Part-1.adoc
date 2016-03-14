@@ -5,3 +5,7 @@ Recently I've to take on abit DevOps role since our former DevOps left and no on
 I think I don't need to know much about server stuff. I would use Heroku to deploy simple webapp. There's already LAMP stack in Digital Ocean. Sometimes ago I was using WebFaction. Right now I'm using Laravel Forge. For development environment there's Laravel Homestead.
 
 Our logging system, Sentry stopped working after we tried to scale down its resource in AWS. Long story short we decided to setup new Sentry with Docker. https://docs.getsentry.com/on-premise/server/installation/
+
+----
+$ asciidoc -b html5 recommended-practices.adoc
+----
