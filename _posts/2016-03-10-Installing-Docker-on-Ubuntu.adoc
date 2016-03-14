@@ -1,11 +1,5 @@
 = Installing Docker on Ubuntu
 
-Recently I've to take on abit DevOps role since our former DevOps left and no one replace him yet. Heavily in backend programming, I only know a little about server stuff, usually only to check and install dependencies needed for the webapp. The hardest thing I did was installing New Relic.
-
-I think I don't need to know much about server stuff. I would use Heroku to deploy simple webapp. There's already LAMP stack in Digital Ocean. Sometimes ago I was using WebFaction. Right now I'm using Laravel Forge. For development environment there's Laravel Homestead.
-
-Our logging system, Sentry stopped working after we tried to scale down its resource in AWS. Long story short we decided to setup new Sentry with Docker.
-
 == Prerequisites
 
 1. Your OS server is *Ubuntu*
@@ -112,6 +106,28 @@ docker-compose version 1.6.2, build 4d72027
 
 == Enable UFW forwarding
 
-You can use `ufw allow {port}` for each port `docker` container or you can enable automatic port forwarding.
+You can use `ufw allow {port}` for each opened port in `docker` container or you can enable UFW forwarding.
 
-1. 
+1. Verify that UFW is installed and enabled
+
+----
+$ sudo ufw status
+----
+
+2. Open the `/etc/default/ufw` file for editing
+
+----
+$ sudo vi /etc/default/ufw
+----
+
+3. Set the `DEFAULT_FORWARD_POLICY` to `ACCPET`, then save & close the file
+
+----
+DEFAULT_FORWARD_POLICY="ACCEPT"
+----
+
+4. Reload UFW to use the new setting
+
+----
+$ sudo ufw reload
+----
